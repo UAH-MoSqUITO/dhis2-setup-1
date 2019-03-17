@@ -11,6 +11,15 @@ tzconf=Etc/UTC
 localetest=en_US.utf8
 localeconf=en_US.UTF-8
 
+psqlver=10
+pgisver=2.4
+
+packages=(
+    postgresql-$psqlver
+    postgresql-contrib-$psqlver
+    postgresql-$psqlver-postgis-$pgisver
+)
+
 
 # Setup
 
@@ -32,4 +41,8 @@ if ! localedef --list | grep -qxF -e "$localetest"
 then
   sudo locale-gen "$localeconf"
 fi
+echo
+
+echo = Install packages
+sudo apt-get --assume-yes install "${packages[@]}"
 echo
